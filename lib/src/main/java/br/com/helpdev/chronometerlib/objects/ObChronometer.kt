@@ -38,4 +38,21 @@ class ObChronometer : Serializable {
         return laps.add(lap)
     }
 
+    fun removeLap(position: Int) {
+        if (position == 0) {
+            laps.clear()
+        } else {
+            val removeObLap: ObLap = laps.removeAt(position)
+            lateinit var newLaps: ArrayList<ObLap>
+
+            for (i in 0 until laps.size) {
+                if (i < position) {
+                    newLaps.add(laps[i])
+                } else {
+
+                }
+            }
+        }
+    }
+
 }

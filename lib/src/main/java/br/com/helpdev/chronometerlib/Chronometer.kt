@@ -88,6 +88,8 @@ class Chronometer(private var obChronometer: ObChronometer = ObChronometer()) : 
 
     fun lap() = obChronometer.newLap(SystemClock.elapsedRealtime())
 
+    fun removelap(position: Int) = obChronometer.removeLap(position)
+
     /**
      * Return the running time.
      */

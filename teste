@@ -1,0 +1,20 @@
+{
+    "query" : {
+      "match": { "text": "*REQUEST*" }
+    },
+    "sort": [
+        { "tag": { "order": "desc" }}
+    ]
+}
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-sort.html
+http://cesio.keynet.com.br:5601/app/kibana#/discover?_g=(refreshInterval:(pause:!t,value:0),time:(from:now-4h,mode:quick,to:now))&_a=(columns:!(_source),filters:!(('$state':(store:appState),exists:(field:logs),meta:(alias:!n,disabled:!f,index:'3b9f5ae0-ac93-11e9-a5e2-3992bbeb67dc',key:logs,negate:!f,type:exists,value:exists)),('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'3b9f5ae0-ac93-11e9-a5e2-3992bbeb67dc',key:text,negate:!f,params:'*REQUEST*',type:phrase),query:(match:(text:'*REQUEST*')),sort:!((tag:(order:desc))))),index:'3b9f5ae0-ac93-11e9-a5e2-3992bbeb67dc',interval:auto,query:(language:lucene,query:''),sort:!('@timestamp',desc))
+
+https://www.thiengo.com.br/chronometer-no-android-entendendo-e-utilizando
+https://www.youtube.com/watch?v=W_uOp2mhBy0
+https://docs.oracle.com/javase/6/docs/platform/serialization/spec/serial-arch.html
+https://developer.android.com/studio/write/annotations.html?hl=pt-br#enum-annotations
+https://stackoverflow.com/questions/13894553/elasticsearch-set-sort-order-using-querystring#comment19144440_13894553
+https://www.elastic.co/guide/en/elasticsearch/reference/6.7/analyzer.html#search-quote-analyzer
+https://www.elastic.co/guide/en/kibana/6.7/kuery-query.html
+https://lucene.apache.org/core/2_9_4/queryparsersyntax.html#Grouping
