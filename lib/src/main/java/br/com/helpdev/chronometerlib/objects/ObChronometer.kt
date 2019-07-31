@@ -8,7 +8,7 @@ class ObChronometer : Serializable {
     private var startTime = 0L
     private var endTime = 0L
 
-    val laps: ArrayList<ObLap> = ArrayList()
+    var laps: ArrayList<ObLap> = ArrayList()
 
     init {
         laps.add(ObLap())
@@ -39,20 +39,13 @@ class ObChronometer : Serializable {
     }
 
     fun removeLap(position: Int) {
-        if (position == 0) {
-            laps.clear()
-        } else {
-            val removeObLap: ObLap = laps.removeAt(position)
-            lateinit var newLaps: ArrayList<ObLap>
+        val removeObLap: ObLap = laps.removeAt(position)
+        this.endTime -= removeObLap.getRunningTime()
 
-            for (i in 0 until laps.size) {
-                if (i < position) {
-                    newLaps.add(laps[i])
-                } else {
-
-                }
+        laps.forEachIndexed { index, obLap ->
+            if (index >= position) {
+                obLap.endTime -= removeObLap.getRunningTime()
             }
         }
     }
-
 }

@@ -44,6 +44,7 @@ class Chronometer(private var obChronometer: ObChronometer = ObChronometer()) : 
     }
 
     private fun addAndRestorePausedTime() {
+        if(pauseBaseTime<=0)return
         val pausedTime = SystemClock.elapsedRealtime() - pauseBaseTime
         obChronometer.addPausedTime(pausedTime)
         runningStartBaseTime += pausedTime
@@ -101,7 +102,9 @@ class Chronometer(private var obChronometer: ObChronometer = ObChronometer()) : 
      */
     fun getCurrentBase() = when {
         0L == runningStartBaseTime -> SystemClock.elapsedRealtime()
-        stopBaseTime > 0 -> runningStartBaseTime + (SystemClock.elapsedRealtime() - stopBaseTime)
+        stopBaseTime > 0 -> {
+            runningStartBaseTime + (SystemClock.elapsedRealtime() - stopBaseTime)
+        }
         pauseBaseTime > 0 -> runningStartBaseTime + (SystemClock.elapsedRealtime() - pauseBaseTime)
         else -> runningStartBaseTime
     }
