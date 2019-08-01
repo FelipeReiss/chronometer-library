@@ -163,7 +163,7 @@ class Chronometer(private var obChronometer: ObChronometer = ObChronometer()) : 
             text += df.format(minutes.toLong()) + ":"
             text += df.format(seconds.toLong()) + "."
             if (hours <= 0) {
-                text += Integer.toString(milliseconds)
+                text += milliseconds.toString()
             }
             return text
         }

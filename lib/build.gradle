@@ -1,6 +1,19 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'maven'
+
+//CRIE O METODO ABAIXO PARA CONFIGURAR O UPLOAD:
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: mavenLocal().getUrl()) //URL DO SEU REPO MAVEN(NO EXEMPLO ESTA USANDO O LOCAL)
+            pom.artifactId ='chronometer-library'
+            pom.groupId = 'com.github.gbzarelli'
+            pom.version = '1.0.1'
+        }
+    }
+}
 
 android {
     compileSdkVersion 28
@@ -8,7 +21,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
