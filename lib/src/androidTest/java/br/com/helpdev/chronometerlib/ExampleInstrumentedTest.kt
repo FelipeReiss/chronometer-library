@@ -21,26 +21,47 @@ class ExampleInstrumentedTest {
         println("elapsedRealtime: "+ SystemClock.elapsedRealtime())
         var cron = Chronometer()
         cron.start()
-        Thread.sleep(2000)
         println("Current time = " + cron.getRunningTime())
+        Thread.sleep(6000)
         cron.lap()
         println("Current last lap = " + cron.getBaseLastLap())
         println("Current time after 2s = " + cron.getRunningTime())
         Thread.sleep(2000)
-        cron.lap()
-        println("Current last lap = " + cron.getBaseLastLap())
-        println("Current time after 2s = " + cron.getRunningTime())
+        cron.pause()
+        Thread.sleep(4000)
+        cron.start()
         Thread.sleep(2000)
         cron.lap()
         println("Current last lap = " + cron.getBaseLastLap())
         println("Current time after 2s = " + cron.getRunningTime())
-        Thread.sleep(2000)
+        Thread.sleep(6000)
+        cron.lap()
+        println("Current last lap = " + cron.getBaseLastLap())
+        println("Current time after 2s = " + cron.getRunningTime())
+        Thread.sleep(4000)
         cron.stop()
         println("Last before stop = " + cron.getBaseLastLap())
         println("Stopped time = " + cron.getRunningTime())
-        Thread.sleep(2000)
-        println("Stopped time after 2s = " + cron.getRunningTime())
-        println("elapsedRealtime: "+ SystemClock.elapsedRealtime())
+
+        println("Before remove lap 2 (position 1)")
+        cron.getObChronometer().laps.forEachIndexed { index, obLap ->
+            println("Tempo ${index + 1}) " +
+                    "End Time ${obLap.endTime} " +
+                    "- Start Time ${obLap.startTime} " +
+                    "+ Paused Time ${obLap.pausedTime} " +
+                    "= Lap time ${obLap.getRunningTime()}")
+        }
+
+        cron.removelap(1)
+
+        println("After remove lap 2 (position 1)")
+        cron.getObChronometer().laps.forEachIndexed { index, obLap ->
+            println("Tempo ${index + 1}) " +
+                    "End Time ${obLap.endTime} " +
+                    "- Start Time ${obLap.startTime} " +
+                    "+ Paused Time ${obLap.pausedTime} " +
+                    "= Lap time ${obLap.getRunningTime()}")
+        }
 
     }
 }

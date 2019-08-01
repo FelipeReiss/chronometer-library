@@ -40,12 +40,13 @@ class ObChronometer : Serializable {
 
     fun removeLap(position: Int) {
         val removeObLap: ObLap = laps.removeAt(position)
-        this.endTime -= removeObLap.getRunningTime()
+        val moveTime = removeObLap.getRunningTime()
+
+        this.endTime += moveTime
 
         laps.forEachIndexed { index, obLap ->
-            if (index >= position) {
-                obLap.endTime -= removeObLap.getRunningTime()
-            }
+                obLap.startTime += moveTime
+                obLap.endTime += moveTime
         }
     }
 }
